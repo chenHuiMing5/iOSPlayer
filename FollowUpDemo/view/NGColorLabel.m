@@ -28,7 +28,6 @@
 }
 
 - (UIColor *)currentColor {
-    
     if (_currentColor == nil) {
         _currentColor = [UIColor grayColor];
     }
