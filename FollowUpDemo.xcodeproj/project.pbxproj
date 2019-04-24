@@ -26,10 +26,14 @@
 		842D6BE6226F58FA0074F115 /* FollowUpDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BE5226F58FA0074F115 /* FollowUpDemoUITests.m */; };
 		842D6BF5226F65330074F115 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BF4226F65330074F115 /* FirstViewController.m */; };
 		842D6BF8226F6AB30074F115 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BF7226F6AB20074F115 /* AudioManager.m */; };
-		842D6C18226F6C2B0074F115 /* AudioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6C17226F6C2B0074F115 /* AudioModel.m */; };
+		842D6C18226F6C2B0074F115 /* NGLyricModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6C17226F6C2B0074F115 /* NGLyricModel.m */; };
 		842D6C1D226F6E720074F115 /* 一东.plist in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1A226F6E720074F115 /* 一东.plist */; };
 		842D6C1E226F6E720074F115 /* Background.caf in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1B226F6E720074F115 /* Background.caf */; };
 		842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1C226F6E720074F115 /* 一东.mp3 */; };
+		8437B9732270473100B000F1 /* NGLyricManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9722270473100B000F1 /* NGLyricManager.m */; };
+		8437B9762270487700B000F1 /* NSDateFormatter+shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9742270487700B000F1 /* NSDateFormatter+shared.m */; };
+		8437B979227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc in Resources */ = {isa = PBXBuildFile; fileRef = 8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */; };
+		8437B97A227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */; };
 		846CDDBA226FDF510008F622 /* AudioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CDDB9226FDF510008F622 /* AudioTableViewCell.m */; };
 		84F8C064226FD65D00C25695 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C052226FD65D00C25695 /* MJPropertyType.m */; };
 		84F8C065226FD65D00C25695 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C055226FD65D00C25695 /* NSObject+MJKeyValue.m */; };
@@ -106,11 +110,17 @@
 		842D6BF4226F65330074F115 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		842D6BF6226F6AB20074F115 /* AudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		842D6BF7226F6AB20074F115 /* AudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
-		842D6C16226F6C2B0074F115 /* AudioModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioModel.h; sourceTree = "<group>"; };
-		842D6C17226F6C2B0074F115 /* AudioModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioModel.m; sourceTree = "<group>"; };
+		842D6C16226F6C2B0074F115 /* NGLyricModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGLyricModel.h; sourceTree = "<group>"; };
+		842D6C17226F6C2B0074F115 /* NGLyricModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGLyricModel.m; sourceTree = "<group>"; };
 		842D6C1A226F6E720074F115 /* 一东.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "一东.plist"; sourceTree = "<group>"; };
 		842D6C1B226F6E720074F115 /* Background.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background.caf; sourceTree = "<group>"; };
 		842D6C1C226F6E720074F115 /* 一东.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "一东.mp3"; sourceTree = "<group>"; };
+		8437B9712270473100B000F1 /* NGLyricManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGLyricManager.h; sourceTree = "<group>"; };
+		8437B9722270473100B000F1 /* NGLyricManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGLyricManager.m; sourceTree = "<group>"; };
+		8437B9742270487700B000F1 /* NSDateFormatter+shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+shared.m"; sourceTree = "<group>"; };
+		8437B9752270487700B000F1 /* NSDateFormatter+shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+shared.h"; sourceTree = "<group>"; };
+		8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "陈奕迅 - 陪你度过漫长岁月 (国语).lrc"; sourceTree = "<group>"; };
+		8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "陈奕迅 - 陪你度过漫长岁月 (国语).mp3"; sourceTree = "<group>"; };
 		846CDDB8226FDF510008F622 /* AudioTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioTableViewCell.h; sourceTree = "<group>"; };
 		846CDDB9226FDF510008F622 /* AudioTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioTableViewCell.m; sourceTree = "<group>"; };
 		84F8C04F226FD65D00C25695 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
@@ -186,8 +196,8 @@
 		84049750227006D20004803D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				842D6C16226F6C2B0074F115 /* AudioModel.h */,
-				842D6C17226F6C2B0074F115 /* AudioModel.m */,
+				842D6C16226F6C2B0074F115 /* NGLyricModel.h */,
+				842D6C17226F6C2B0074F115 /* NGLyricModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +264,10 @@
 				842D6BC2226F58F70074F115 /* AppDelegate.m */,
 				842D6BF6226F6AB20074F115 /* AudioManager.h */,
 				842D6BF7226F6AB20074F115 /* AudioManager.m */,
+				8437B9712270473100B000F1 /* NGLyricManager.h */,
+				8437B9722270473100B000F1 /* NGLyricManager.m */,
+				8437B9752270487700B000F1 /* NSDateFormatter+shared.h */,
+				8437B9742270487700B000F1 /* NSDateFormatter+shared.m */,
 				8404974E227006B20004803D /* controller */,
 				8404974F227006C30004803D /* view */,
 				84049750227006D20004803D /* Model */,
@@ -285,6 +299,8 @@
 		842D6C19226F6E720074F115 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
+				8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */,
+				8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */,
 				842D6C1A226F6E720074F115 /* 一东.plist */,
 				842D6C1B226F6E720074F115 /* Background.caf */,
 				842D6C1C226F6E720074F115 /* 一东.mp3 */,
@@ -426,7 +442,9 @@
 				842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */,
 				842D6C1D226F6E720074F115 /* 一东.plist in Resources */,
 				842D6C1E226F6E720074F115 /* Background.caf in Resources */,
+				8437B979227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc in Resources */,
 				842D6BCB226F58FA0074F115 /* Assets.xcassets in Resources */,
+				8437B97A227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +477,9 @@
 				842D6BC6226F58F70074F115 /* ViewController.m in Sources */,
 				842D6BD1226F58FA0074F115 /* main.m in Sources */,
 				84049773227009070004803D /* ViewController+MASAdditions.m in Sources */,
+				8437B9762270487700B000F1 /* NSDateFormatter+shared.m in Sources */,
 				842D6BC3226F58F70074F115 /* AppDelegate.m in Sources */,
+				8437B9732270473100B000F1 /* NGLyricManager.m in Sources */,
 				84049778227009070004803D /* View+MASAdditions.m in Sources */,
 				8404977A227009070004803D /* MASViewConstraint.m in Sources */,
 				84F8C067226FD65D00C25695 /* NSObject+MJCoding.m in Sources */,
@@ -473,7 +493,7 @@
 				84F8C066226FD65D00C25695 /* MJProperty.m in Sources */,
 				84F8C069226FD65D00C25695 /* NSObject+MJProperty.m in Sources */,
 				8404977F22700C8E0004803D /* NGColorLabel.m in Sources */,
-				842D6C18226F6C2B0074F115 /* AudioModel.m in Sources */,
+				842D6C18226F6C2B0074F115 /* NGLyricModel.m in Sources */,
 				84F8C06B226FD65D00C25695 /* NSString+MJExtension.m in Sources */,
 				84049777227009070004803D /* NSArray+MASAdditions.m in Sources */,
 				842D6BF8226F6AB30074F115 /* AudioManager.m in Sources */,

@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AudioModel : NSObject
+@interface NGLyricModel : NSObject
+/** 歌词内容 */
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) double time;
 @end

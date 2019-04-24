@@ -6,8 +6,8 @@
 //  Copyright © 2019 ngmmxh. All rights reserved.
 //
 
-#import "AudioModel.h"
+#import "NGLyricModel.h"
 
-@implementation AudioModel
+@implementation NGLyricModel
 
 @end

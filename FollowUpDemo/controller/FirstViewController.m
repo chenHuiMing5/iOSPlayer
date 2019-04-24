@@ -9,12 +9,13 @@
 #import "FirstViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AudioManager.h"
-#import "AudioModel.h"
+#import "NGLyricModel.h"
 #import "MJExtension.h"
 #import "AudioTableViewCell.h"
+
+#import "NGLyricManager.h"
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) NSArray *words;
 @property (nonatomic, strong) CADisplayLink *link;
 @property (nonatomic, strong) AVAudioPlayer *wordPlayer;
@@ -27,16 +28,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
-
-    [self.view addSubview:self.tableView];
-    _currentMusicIndex = 0;
-    self.wordPlayer = [AudioManager playMusic:@"一东.mp3"];
-    
-    [AudioManager playMusic:@"Background.caf"];
-    
-    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [self createUI];
+    [self initData];
 }
 
+-(void)createUI{
+    [self.view addSubview:self.tableView];
+
+}
+-(void)initData {
+    _currentMusicIndex = 0;
+    ///test1
+//    self.wordPlayer = [AudioManager playMusic:@"一东.mp3"];
+//    [AudioManager playMusic:@"Background.caf"];
+//    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    //test2
+    self.wordPlayer = [AudioManager playMusic:@"陈奕迅 - 陪你度过漫长岁月 (国语).mp3"];
+    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+
+}
 - (CADisplayLink *)link
 {
     if (!_link) {
@@ -48,7 +59,12 @@
 - (NSArray *)words
 {
     if (!_words) {
-        self.words = [AudioModel objectArrayWithFilename:@"一东.plist"];
+        //test1
+//        self.words = [NGLyricModel objectArrayWithFilename:@"一东.plist"];
+        
+        //test2
+        self.words = [NGLyricManager lyricParserWithFileName:@"陈奕迅 - 陪你度过漫长岁月 (国语).lrc"];
+
     }
     return _words;
 }
@@ -61,18 +77,20 @@
     int count = self.words.count;
     for (int i = 0; i<count; i++) {
         // 1.当前词句
-        AudioModel *word = self.words[i];
+        NGLyricModel *word = self.words[i];
         
         // 2.获得下一条词句
         int nextI = i + 1;
-        AudioModel *nextWord = nil;
+        NGLyricModel *nextWord = nil;
         if (nextI < count) {
             nextWord = self.words[nextI];
         }
         
         if (currentTime < nextWord.time && currentTime >= word.time) {
             NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
+//            [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
+//            [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+
             AudioTableViewCell *cell =(AudioTableViewCell *)[self.tableView cellForRowAtIndexPath:path];
             CGFloat progress = (currentTime - word.time) / (nextWord.time - word.time);
             cell.labTitle.currentColor = [UIColor redColor];
@@ -93,16 +111,13 @@
     return self.words.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 50;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // 1.创建cell
     static NSString *ID = @"word";
     AudioTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
-
-    // 2.设置cell的数据
-    AudioModel *word = self.words[indexPath.row];
+    NGLyricModel *word = self.words[indexPath.row];
     cell.labTitle.text = word.text;
     
     return cell;
