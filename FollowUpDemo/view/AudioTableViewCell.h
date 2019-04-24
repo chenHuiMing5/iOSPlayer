@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NGColorLabel.h"
 
 @interface AudioTableViewCell : UITableViewCell
-//@property (nonatomic, strong) uila *<#name#>;
+@property (nonatomic, strong) NGColorLabel *labTitle;
 
 @end
 

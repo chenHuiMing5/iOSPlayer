@@ -11,7 +11,7 @@
 #import "AudioManager.h"
 #import "AudioModel.h"
 #import "MJExtension.h"
-
+#import "AudioTableViewCell.h"
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -80,20 +80,18 @@
 {
     return self.words.count;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 1.创建cell
     static NSString *ID = @"word";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    AudioTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID forIndexPath:indexPath];
 
     // 2.设置cell的数据
     AudioModel *word = self.words[indexPath.row];
-    cell.textLabel.text = word.text;
+    cell.labTitle.text = word.text;
     
     return cell;
 }
@@ -101,7 +99,7 @@
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"word"];
+        [_tableView registerClass:[AudioTableViewCell class] forCellReuseIdentifier:@"word"];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
