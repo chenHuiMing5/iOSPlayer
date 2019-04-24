@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSArray *words;
 @property (nonatomic, strong) CADisplayLink *link;
 @property (nonatomic, strong) AVAudioPlayer *wordPlayer;
+@property (nonatomic,assign) NSInteger currentMusicIndex;
+
 @end
 
 @implementation FirstViewController
@@ -27,6 +29,7 @@
     self.view.backgroundColor = [UIColor redColor];
 
     [self.view addSubview:self.tableView];
+    _currentMusicIndex = 0;
     self.wordPlayer = [AudioManager playMusic:@"一东.mp3"];
     
     [AudioManager playMusic:@"Background.caf"];
@@ -70,8 +73,17 @@
         if (currentTime < nextWord.time && currentTime >= word.time) {
             NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
             [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionTop];
+            AudioTableViewCell *cell =(AudioTableViewCell *)[self.tableView cellForRowAtIndexPath:path];
+            CGFloat progress = (currentTime - word.time) / (nextWord.time - word.time);
+            cell.labTitle.currentColor = [UIColor redColor];
+            cell.labTitle.progress = progress;
             break;
         }
+        // 设置歌词颜色
+//        [self.lyricsLabel setValue:@(progress) forKey:@"progress"];
+        
+      
+      
     }
 }
 

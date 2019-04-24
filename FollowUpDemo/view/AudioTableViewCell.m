@@ -40,7 +40,7 @@
     if (!_labTitle) {
         _labTitle = [[NGColorLabel alloc] init];
         _labTitle.textAlignment = NSTextAlignmentCenter;
-        _labTitle.textColor = [UIColor redColor];
+        _labTitle.textColor = [UIColor blackColor];
     }return _labTitle;
 }
 @end
