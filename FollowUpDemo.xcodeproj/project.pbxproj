@@ -24,16 +24,21 @@
 		842D6BD1226F58FA0074F115 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BD0226F58FA0074F115 /* main.m */; };
 		842D6BDB226F58FA0074F115 /* FollowUpDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BDA226F58FA0074F115 /* FollowUpDemoTests.m */; };
 		842D6BE6226F58FA0074F115 /* FollowUpDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BE5226F58FA0074F115 /* FollowUpDemoUITests.m */; };
-		842D6BF5226F65330074F115 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BF4226F65330074F115 /* FirstViewController.m */; };
-		842D6BF8226F6AB30074F115 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BF7226F6AB20074F115 /* AudioManager.m */; };
 		842D6C18226F6C2B0074F115 /* NGLyricModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6C17226F6C2B0074F115 /* NGLyricModel.m */; };
 		842D6C1D226F6E720074F115 /* 一东.plist in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1A226F6E720074F115 /* 一东.plist */; };
 		842D6C1E226F6E720074F115 /* Background.caf in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1B226F6E720074F115 /* Background.caf */; };
 		842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1C226F6E720074F115 /* 一东.mp3 */; };
-		8437B9732270473100B000F1 /* NGLyricManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9722270473100B000F1 /* NGLyricManager.m */; };
 		8437B9762270487700B000F1 /* NSDateFormatter+shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9742270487700B000F1 /* NSDateFormatter+shared.m */; };
 		8437B979227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc in Resources */ = {isa = PBXBuildFile; fileRef = 8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */; };
 		8437B97A227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */; };
+		8437B9A02270739400B000F1 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8437B99C2270738F00B000F1 /* COPYING.txt */; };
+		8437B9A722708E5300B000F1 /* WPFLyricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9A522708E5200B000F1 /* WPFLyricView.m */; };
+		8437B9AA227090C100B000F1 /* WPFSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9A8227090C100B000F1 /* WPFSliderView.m */; };
+		8437B9AD227090EB00B000F1 /* WPFLyric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9AB227090EA00B000F1 /* WPFLyric.m */; };
+		8437B9B02270912F00B000F1 /* WPFPlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9AF2270912F00B000F1 /* WPFPlayManager.m */; };
+		8437B9B3227091F100B000F1 /* NGTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9B2227091F100B000F1 /* NGTwoViewController.m */; };
+		8437B9B62270B97200B000F1 /* WPFMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9B52270B97100B000F1 /* WPFMusic.m */; };
+		8437B9B92270C25E00B000F1 /* WPFLyricParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9B72270C25E00B000F1 /* WPFLyricParser.m */; };
 		846CDDBA226FDF510008F622 /* AudioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CDDB9226FDF510008F622 /* AudioTableViewCell.m */; };
 		84F8C064226FD65D00C25695 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C052226FD65D00C25695 /* MJPropertyType.m */; };
 		84F8C065226FD65D00C25695 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C055226FD65D00C25695 /* NSObject+MJKeyValue.m */; };
@@ -106,21 +111,30 @@
 		842D6BE1226F58FA0074F115 /* FollowUpDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FollowUpDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		842D6BE5226F58FA0074F115 /* FollowUpDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowUpDemoUITests.m; sourceTree = "<group>"; };
 		842D6BE7226F58FA0074F115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		842D6BF3226F65330074F115 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		842D6BF4226F65330074F115 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		842D6BF6226F6AB20074F115 /* AudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
-		842D6BF7226F6AB20074F115 /* AudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		842D6C16226F6C2B0074F115 /* NGLyricModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGLyricModel.h; sourceTree = "<group>"; };
 		842D6C17226F6C2B0074F115 /* NGLyricModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGLyricModel.m; sourceTree = "<group>"; };
 		842D6C1A226F6E720074F115 /* 一东.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "一东.plist"; sourceTree = "<group>"; };
 		842D6C1B226F6E720074F115 /* Background.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background.caf; sourceTree = "<group>"; };
 		842D6C1C226F6E720074F115 /* 一东.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "一东.mp3"; sourceTree = "<group>"; };
-		8437B9712270473100B000F1 /* NGLyricManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGLyricManager.h; sourceTree = "<group>"; };
-		8437B9722270473100B000F1 /* NGLyricManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGLyricManager.m; sourceTree = "<group>"; };
 		8437B9742270487700B000F1 /* NSDateFormatter+shared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+shared.m"; sourceTree = "<group>"; };
 		8437B9752270487700B000F1 /* NSDateFormatter+shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+shared.h"; sourceTree = "<group>"; };
 		8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "陈奕迅 - 陪你度过漫长岁月 (国语).lrc"; sourceTree = "<group>"; };
 		8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "陈奕迅 - 陪你度过漫长岁月 (国语).mp3"; sourceTree = "<group>"; };
+		8437B99C2270738F00B000F1 /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
+		8437B9A522708E5200B000F1 /* WPFLyricView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFLyricView.m; sourceTree = "<group>"; };
+		8437B9A622708E5200B000F1 /* WPFLyricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFLyricView.h; sourceTree = "<group>"; };
+		8437B9A8227090C100B000F1 /* WPFSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFSliderView.m; sourceTree = "<group>"; };
+		8437B9A9227090C100B000F1 /* WPFSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFSliderView.h; sourceTree = "<group>"; };
+		8437B9AB227090EA00B000F1 /* WPFLyric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFLyric.m; sourceTree = "<group>"; };
+		8437B9AC227090EA00B000F1 /* WPFLyric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFLyric.h; sourceTree = "<group>"; };
+		8437B9AE2270912F00B000F1 /* WPFPlayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFPlayManager.h; sourceTree = "<group>"; };
+		8437B9AF2270912F00B000F1 /* WPFPlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFPlayManager.m; sourceTree = "<group>"; };
+		8437B9B1227091F100B000F1 /* NGTwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGTwoViewController.h; sourceTree = "<group>"; };
+		8437B9B2227091F100B000F1 /* NGTwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGTwoViewController.m; sourceTree = "<group>"; };
+		8437B9B42270B97100B000F1 /* WPFMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFMusic.h; sourceTree = "<group>"; };
+		8437B9B52270B97100B000F1 /* WPFMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFMusic.m; sourceTree = "<group>"; };
+		8437B9B72270C25E00B000F1 /* WPFLyricParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFLyricParser.m; sourceTree = "<group>"; };
+		8437B9B82270C25E00B000F1 /* WPFLyricParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFLyricParser.h; sourceTree = "<group>"; };
 		846CDDB8226FDF510008F622 /* AudioTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioTableViewCell.h; sourceTree = "<group>"; };
 		846CDDB9226FDF510008F622 /* AudioTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioTableViewCell.m; sourceTree = "<group>"; };
 		84F8C04F226FD65D00C25695 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
@@ -176,8 +190,8 @@
 			children = (
 				842D6BC4226F58F70074F115 /* ViewController.h */,
 				842D6BC5226F58F70074F115 /* ViewController.m */,
-				842D6BF3226F65330074F115 /* FirstViewController.h */,
-				842D6BF4226F65330074F115 /* FirstViewController.m */,
+				8437B9B1227091F100B000F1 /* NGTwoViewController.h */,
+				8437B9B2227091F100B000F1 /* NGTwoViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -189,6 +203,10 @@
 				846CDDB9226FDF510008F622 /* AudioTableViewCell.m */,
 				8404977D22700C8E0004803D /* NGColorLabel.h */,
 				8404977E22700C8E0004803D /* NGColorLabel.m */,
+				8437B9A622708E5200B000F1 /* WPFLyricView.h */,
+				8437B9A522708E5200B000F1 /* WPFLyricView.m */,
+				8437B9A9227090C100B000F1 /* WPFSliderView.h */,
+				8437B9A8227090C100B000F1 /* WPFSliderView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -196,6 +214,8 @@
 		84049750227006D20004803D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8437B9B42270B97100B000F1 /* WPFMusic.h */,
+				8437B9B52270B97100B000F1 /* WPFMusic.m */,
 				842D6C16226F6C2B0074F115 /* NGLyricModel.h */,
 				842D6C17226F6C2B0074F115 /* NGLyricModel.m */,
 			);
@@ -262,14 +282,16 @@
 				842D6C19226F6E720074F115 /* Resouces */,
 				842D6BC1226F58F70074F115 /* AppDelegate.h */,
 				842D6BC2226F58F70074F115 /* AppDelegate.m */,
-				842D6BF6226F6AB20074F115 /* AudioManager.h */,
-				842D6BF7226F6AB20074F115 /* AudioManager.m */,
-				8437B9712270473100B000F1 /* NGLyricManager.h */,
-				8437B9722270473100B000F1 /* NGLyricManager.m */,
+				8437B9AE2270912F00B000F1 /* WPFPlayManager.h */,
+				8437B9AF2270912F00B000F1 /* WPFPlayManager.m */,
+				8437B9B82270C25E00B000F1 /* WPFLyricParser.h */,
+				8437B9B72270C25E00B000F1 /* WPFLyricParser.m */,
 				8437B9752270487700B000F1 /* NSDateFormatter+shared.h */,
 				8437B9742270487700B000F1 /* NSDateFormatter+shared.m */,
 				8404974E227006B20004803D /* controller */,
 				8404974F227006C30004803D /* view */,
+				8437B9AC227090EA00B000F1 /* WPFLyric.h */,
+				8437B9AB227090EA00B000F1 /* WPFLyric.m */,
 				84049750227006D20004803D /* Model */,
 				842D6BCA226F58FA0074F115 /* Assets.xcassets */,
 				842D6BCF226F58FA0074F115 /* Info.plist */,
@@ -299,6 +321,7 @@
 		842D6C19226F6E720074F115 /* Resouces */ = {
 			isa = PBXGroup;
 			children = (
+				8437B99B2270738F00B000F1 /* MobileVLCKit-unstable */,
 				8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */,
 				8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */,
 				842D6C1A226F6E720074F115 /* 一东.plist */,
@@ -306,6 +329,15 @@
 				842D6C1C226F6E720074F115 /* 一东.mp3 */,
 			);
 			path = Resouces;
+			sourceTree = "<group>";
+		};
+		8437B99B2270738F00B000F1 /* MobileVLCKit-unstable */ = {
+			isa = PBXGroup;
+			children = (
+				8437B99C2270738F00B000F1 /* COPYING.txt */,
+			);
+			name = "MobileVLCKit-unstable";
+			path = "../../../../Downloads/GKAudioPlayerDemo-master/Pods/MobileVLCKit-unstable";
 			sourceTree = "<group>";
 		};
 		84F8C04E226FD65D00C25695 /* MJExtension */ = {
@@ -440,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */,
+				8437B9A02270739400B000F1 /* COPYING.txt in Resources */,
 				842D6C1D226F6E720074F115 /* 一东.plist in Resources */,
 				842D6C1E226F6E720074F115 /* Background.caf in Resources */,
 				8437B979227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc in Resources */,
@@ -476,29 +509,33 @@
 				846CDDBA226FDF510008F622 /* AudioTableViewCell.m in Sources */,
 				842D6BC6226F58F70074F115 /* ViewController.m in Sources */,
 				842D6BD1226F58FA0074F115 /* main.m in Sources */,
+				8437B9B02270912F00B000F1 /* WPFPlayManager.m in Sources */,
 				84049773227009070004803D /* ViewController+MASAdditions.m in Sources */,
 				8437B9762270487700B000F1 /* NSDateFormatter+shared.m in Sources */,
+				8437B9AD227090EB00B000F1 /* WPFLyric.m in Sources */,
 				842D6BC3226F58F70074F115 /* AppDelegate.m in Sources */,
-				8437B9732270473100B000F1 /* NGLyricManager.m in Sources */,
 				84049778227009070004803D /* View+MASAdditions.m in Sources */,
 				8404977A227009070004803D /* MASViewConstraint.m in Sources */,
 				84F8C067226FD65D00C25695 /* NSObject+MJCoding.m in Sources */,
 				84049775227009070004803D /* MASConstraintMaker.m in Sources */,
 				84049772227009070004803D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				84049779227009070004803D /* MASConstraint.m in Sources */,
+				8437B9B62270B97200B000F1 /* WPFMusic.m in Sources */,
 				84049774227009070004803D /* MASCompositeConstraint.m in Sources */,
 				84049776227009070004803D /* MASLayoutConstraint.m in Sources */,
+				8437B9B92270C25E00B000F1 /* WPFLyricParser.m in Sources */,
 				84F8C06D226FD65D00C25695 /* MJFoundation.m in Sources */,
 				84F8C06C226FD65D00C25695 /* MJPropertyKey.m in Sources */,
+				8437B9AA227090C100B000F1 /* WPFSliderView.m in Sources */,
 				84F8C066226FD65D00C25695 /* MJProperty.m in Sources */,
 				84F8C069226FD65D00C25695 /* NSObject+MJProperty.m in Sources */,
+				8437B9B3227091F100B000F1 /* NGTwoViewController.m in Sources */,
 				8404977F22700C8E0004803D /* NGColorLabel.m in Sources */,
 				842D6C18226F6C2B0074F115 /* NGLyricModel.m in Sources */,
 				84F8C06B226FD65D00C25695 /* NSString+MJExtension.m in Sources */,
 				84049777227009070004803D /* NSArray+MASAdditions.m in Sources */,
-				842D6BF8226F6AB30074F115 /* AudioManager.m in Sources */,
 				84F8C064226FD65D00C25695 /* MJPropertyType.m in Sources */,
-				842D6BF5226F65330074F115 /* FirstViewController.m in Sources */,
+				8437B9A722708E5300B000F1 /* WPFLyricView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +688,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FollowUpDemo/Resouces/MobileVLCKit-unstable",
+				);
 				INFOPLIST_FILE = FollowUpDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -667,6 +708,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FollowUpDemo/Resouces/MobileVLCKit-unstable",
+				);
 				INFOPLIST_FILE = FollowUpDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "FirstViewController.h"
+#import "NGTwoViewController.h"
 @interface ViewController ()
 
 @end
@@ -26,7 +26,7 @@
     
 }
 -(void)onClickBtn{
-    FirstViewController *vc = [[FirstViewController alloc] init];
+    NGTwoViewController *vc = [[NGTwoViewController alloc] init];
     [self.navigationController pushViewController:vc animated:NO];
 }
 
