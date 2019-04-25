@@ -66,6 +66,7 @@
     // 2.创建竖直滚动的scrollerView
     UIScrollView *vScrollerView = [[UIScrollView alloc] init];
     [self addSubview:vScrollerView];
+    vScrollerView.frame = self.bounds;
     vScrollerView.delegate = self;
     self.vScrollerView = vScrollerView;
     
@@ -74,29 +75,20 @@
 //        make.edges.equalTo(UIEdgeInsetsMake(0, 0, self.frame.size.width, self.frame.size.height));
 //    }];
     // 添加约束
-    [vScrollerView makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(UIEdgeInsetsMake(0, 0, self.frame.size.width, self.frame.size.height));
-    }];
-    
-    // 添加sliderView
-    WPFSliderView *sliderView = [[WPFSliderView alloc] init];
-    [self addSubview:sliderView];
-    sliderView.hidden = YES;
-    self.sliderView = sliderView;
-    
-    [sliderView makeConstraints:^(MASConstraintMaker *make) {
-        make.center.width.equalTo(self);
-        make.height.equalTo(self.rowHeight);
-    }];
+//    [vScrollerView makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(UIEdgeInsetsMake(0, 0, self.frame.size.width, self.frame.size.height));
+//    }];
+//
+  
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
 //    self.hScrollerView.contentSize = CGSizeMake(self.bounds.size.width * 2, 0);
-    [self.vScrollerView makeConstraints:^(MASConstraintMaker *make) {
-        make.top. left.right.bottom.equalTo(self);
+//    [self.vScrollerView makeConstraints:^(MASConstraintMaker *make) {
+//        make.top. left.right.bottom.mas_equalTo(self);
 //        make.left.equalTo(self.bounds.size.width);
-    }];
+//    }];
     
     self.vScrollerView.contentSize = CGSizeMake(0, self.lyrics.count * self.rowHeight);
 #warning 必须使用self.bounds.size.height  不能使用self.vScrollerView.bounds.size.height   这个layoutSubviews只作用于self   所以self.vScrollerView可能还没有布局完成

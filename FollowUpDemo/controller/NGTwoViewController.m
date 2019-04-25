@@ -32,7 +32,7 @@
     self.currentLyricIndex = 0;
     [self.view addSubview:self.lyricView];
    
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor grayColor];
     WPFPlayManager *playManager = [WPFPlayManager sharedPlayManager];
 //    if (self.playBtn.selected == NO) {
         [self startUpdateProgress];

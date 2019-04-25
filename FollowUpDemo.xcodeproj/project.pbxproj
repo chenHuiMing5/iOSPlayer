@@ -24,7 +24,6 @@
 		842D6BD1226F58FA0074F115 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BD0226F58FA0074F115 /* main.m */; };
 		842D6BDB226F58FA0074F115 /* FollowUpDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BDA226F58FA0074F115 /* FollowUpDemoTests.m */; };
 		842D6BE6226F58FA0074F115 /* FollowUpDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BE5226F58FA0074F115 /* FollowUpDemoUITests.m */; };
-		842D6C18226F6C2B0074F115 /* NGLyricModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6C17226F6C2B0074F115 /* NGLyricModel.m */; };
 		842D6C1D226F6E720074F115 /* 一东.plist in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1A226F6E720074F115 /* 一东.plist */; };
 		842D6C1E226F6E720074F115 /* Background.caf in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1B226F6E720074F115 /* Background.caf */; };
 		842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 842D6C1C226F6E720074F115 /* 一东.mp3 */; };
@@ -111,8 +110,6 @@
 		842D6BE1226F58FA0074F115 /* FollowUpDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FollowUpDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		842D6BE5226F58FA0074F115 /* FollowUpDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowUpDemoUITests.m; sourceTree = "<group>"; };
 		842D6BE7226F58FA0074F115 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		842D6C16226F6C2B0074F115 /* NGLyricModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGLyricModel.h; sourceTree = "<group>"; };
-		842D6C17226F6C2B0074F115 /* NGLyricModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGLyricModel.m; sourceTree = "<group>"; };
 		842D6C1A226F6E720074F115 /* 一东.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "一东.plist"; sourceTree = "<group>"; };
 		842D6C1B226F6E720074F115 /* Background.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background.caf; sourceTree = "<group>"; };
 		842D6C1C226F6E720074F115 /* 一东.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "一东.mp3"; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 			children = (
 				8437B9B42270B97100B000F1 /* WPFMusic.h */,
 				8437B9B52270B97100B000F1 /* WPFMusic.m */,
-				842D6C16226F6C2B0074F115 /* NGLyricModel.h */,
-				842D6C17226F6C2B0074F115 /* NGLyricModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -531,7 +526,6 @@
 				84F8C069226FD65D00C25695 /* NSObject+MJProperty.m in Sources */,
 				8437B9B3227091F100B000F1 /* NGTwoViewController.m in Sources */,
 				8404977F22700C8E0004803D /* NGColorLabel.m in Sources */,
-				842D6C18226F6C2B0074F115 /* NGLyricModel.m in Sources */,
 				84F8C06B226FD65D00C25695 /* NSString+MJExtension.m in Sources */,
 				84049777227009070004803D /* NSArray+MASAdditions.m in Sources */,
 				84F8C064226FD65D00C25695 /* MJPropertyType.m in Sources */,
