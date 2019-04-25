@@ -36,6 +36,9 @@
 ///播放录音
 @property (nonatomic, strong) UIButton *btnPlayingRecord;
 
+@property (nonatomic,strong) NSString *filePath;
+
+
 
 
 @end
@@ -48,17 +51,79 @@
     [self.view addSubview:self.lyricView];
    
     self.view.backgroundColor = [UIColor grayColor];
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语).mp3" withExtension:nil];
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语).mp3" withExtension:nil];
+//    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
 
-    [self.player play];
+//    [self.player play];
     // 强制布局
-    [self startRecord];
+//    [self startRecord];
     [self.view addSubview:self.btnPlayingRecord];
-
+    
+    [self audioAndAudio];
+    
     [self.view layoutIfNeeded];
 }
 
+///合成
+- (void)audioAndAudio
+{
+    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语)" ofType:@"mp3"];
+    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"一东" ofType:@"mp3"];
+//    NSString *audioPath = [self.recordFileUrl absoluteString];
+    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
+    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
+    
+    AVMutableComposition *compostion = [AVMutableComposition composition];
+    AVMutableCompositionTrack *video = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+    [video insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+    AVMutableCompositionTrack *audio = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
+    [audio insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+    
+    /*
+     批量插入音轨到文件最后
+     CMTimeRange range = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+     [video insertTimeRanges:@[[NSValue valueWithCMTimeRange:range],[NSValue valueWithCMTimeRange:range]] ofTracks:@[[videoAsset tracksWithMediaType:AVMediaTypeAudio].firstObject,[audioAsset tracksWithMediaType:AVMediaTypeAudio].firstObject] atTime:kCMTimeZero error:nil];
+     */
+    
+    AVAssetExportSession *session = [[AVAssetExportSession alloc]initWithAsset:compostion presetName:AVAssetExportPresetAppleM4A];
+    NSString *outPutFilePath = [[self.filePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"Audio.m4a"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath])
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:outPutFilePath error:nil];
+    }
+    session.outputURL = [NSURL fileURLWithPath:outPutFilePath];
+    session.outputFileType = @"com.apple.m4a-audio";
+    session.shouldOptimizeForNetworkUse = YES;
+    [session exportAsynchronouslyWithCompletionHandler:^{
+        if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath])
+        {
+            // 调用播放方法
+            [self playAudio:[NSURL fileURLWithPath:outPutFilePath]];
+        }
+        else
+        {
+            NSLog(@"输出错误");
+        }
+    }];
+    
+}
+- (void)playAudio:(NSURL *)url
+{
+    // 传入地址
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+    // 播放器
+    AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+    // 播放器layer
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+    playerLayer.frame = self.view.frame;
+    // 视频填充模式
+    playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+    // 添加到imageview的layer上
+    [self.view.layer addSublayer:playerLayer];
+    // 隐藏提示框 开始播放
+    // 播放
+    [player play];
+}
 
 -(void)startRecord{
     AVAudioSession *session =[AVAudioSession sharedInstance];
@@ -78,7 +143,7 @@
     
     //1.获取沙盒地址
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    filePath = [path stringByAppendingString:@"/RRecord.wav"];
+    filePath = [path stringByAppendingString:@"/RRecord.mp3"];
     
     //2.获取文件路径
     self.recordFileUrl = [NSURL fileURLWithPath:filePath];
@@ -106,7 +171,7 @@
         [_recorder prepareToRecord];
         [_recorder record];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(60 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             [self stopRecord];
         });
@@ -125,7 +190,7 @@
         [self.recorder stop];
     }
     NSFileManager *manager = [NSFileManager defaultManager];
-
+    [self audioAndAudio];
 }
 
 - (void)startUpdateProgress {
@@ -215,6 +280,21 @@
         _btnPlayingRecord.backgroundColor = [UIColor redColor];
         [_btnPlayingRecord addTarget:self action:@selector(onClickBtnPlayingRecord) forControlEvents:UIControlEventTouchUpInside];
     }return _btnPlayingRecord;
+}
+- (NSString *)filePath
+{
+    if (!_filePath)
+    {
+        _filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+        _filePath = [_filePath stringByAppendingPathComponent:@"user"];
+        NSFileManager *manage = [NSFileManager defaultManager];
+        if ([manage createDirectoryAtPath:_filePath withIntermediateDirectories:YES attributes:nil error:nil])
+        {
+            _filePath = [_filePath stringByAppendingPathComponent:@"testAudio.aac"];
+        }
+    }
+    
+    return _filePath;
 }
 
 /*
