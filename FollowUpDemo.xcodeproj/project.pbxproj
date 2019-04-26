@@ -18,6 +18,8 @@
 		8404977A227009070004803D /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8404976E227009070004803D /* MASViewConstraint.m */; };
 		8404977B227009070004803D /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 8404976F227009070004803D /* MASViewAttribute.m */; };
 		8404977F22700C8E0004803D /* NGColorLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8404977E22700C8E0004803D /* NGColorLabel.m */; };
+		840D95AE2272AA4C00F4A1AE /* 清明（刘琮）.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840D95AD2272AA4C00F4A1AE /* 清明（刘琮）.mp3 */; };
+		840D95B02272AA7200F4A1AE /* 张金多（女孩）.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 840D95AF2272AA7200F4A1AE /* 张金多（女孩）.m4a */; };
 		842D6BC3226F58F70074F115 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BC2226F58F70074F115 /* AppDelegate.m */; };
 		842D6BC6226F58F70074F115 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BC5226F58F70074F115 /* ViewController.m */; };
 		842D6BCB226F58FA0074F115 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842D6BCA226F58FA0074F115 /* Assets.xcassets */; };
@@ -96,6 +98,8 @@
 		8404976F227009070004803D /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		8404977D22700C8E0004803D /* NGColorLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGColorLabel.h; sourceTree = "<group>"; };
 		8404977E22700C8E0004803D /* NGColorLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGColorLabel.m; sourceTree = "<group>"; };
+		840D95AD2272AA4C00F4A1AE /* 清明（刘琮）.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "清明（刘琮）.mp3"; sourceTree = "<group>"; };
+		840D95AF2272AA7200F4A1AE /* 张金多（女孩）.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "张金多（女孩）.m4a"; sourceTree = "<group>"; };
 		842D6BBE226F58F70074F115 /* FollowUpDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FollowUpDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842D6BC1226F58F70074F115 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		842D6BC2226F58F70074F115 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 				842D6C1A226F6E720074F115 /* 一东.plist */,
 				842D6C1B226F6E720074F115 /* Background.caf */,
 				842D6C1C226F6E720074F115 /* 一东.mp3 */,
+				840D95AF2272AA7200F4A1AE /* 张金多（女孩）.m4a */,
+				840D95AD2272AA4C00F4A1AE /* 清明（刘琮）.mp3 */,
 			);
 			path = Resouces;
 			sourceTree = "<group>";
@@ -468,6 +474,8 @@
 			files = (
 				842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */,
 				8437B9A02270739400B000F1 /* COPYING.txt in Resources */,
+				840D95B02272AA7200F4A1AE /* 张金多（女孩）.m4a in Resources */,
+				840D95AE2272AA4C00F4A1AE /* 清明（刘琮）.mp3 in Resources */,
 				842D6C1D226F6E720074F115 /* 一东.plist in Resources */,
 				842D6C1E226F6E720074F115 /* Background.caf in Resources */,
 				8437B979227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc in Resources */,

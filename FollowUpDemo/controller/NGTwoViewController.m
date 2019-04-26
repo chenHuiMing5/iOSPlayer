@@ -33,8 +33,8 @@
 @property (nonatomic, strong) AVAudioRecorder *recorder;//录音器
 @property (nonatomic, strong) AVAudioPlayer *player; //播放器
 @property (nonatomic, strong) NSURL *recordFileUrl; //文件地址
-///播放录音
-@property (nonatomic, strong) UIButton *btnPlayingRecord;
+///合成声音
+@property (nonatomic, strong) UIButton *btnMP3RecordMixture;
 
 @property (nonatomic,strong) NSString *filePath;
 
@@ -51,24 +51,35 @@
     [self.view addSubview:self.lyricView];
    
     self.view.backgroundColor = [UIColor grayColor];
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语).mp3" withExtension:nil];
-//    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
+    [self playAudioMp3];
+    
 
-//    [self.player play];
     // 强制布局
 //    [self startRecord];
-    [self.view addSubview:self.btnPlayingRecord];
-    
-    [self audioAndAudio];
-    
     [self.view layoutIfNeeded];
 }
+-(void)createUI{
+    [self.view addSubview:self.btnMP3RecordMixture];
+
+}
+///播放
+-(void)playAudioMp3{
+    WPFPlayManager *playManager = [WPFPlayManager sharedPlayManager];
+    //    if (self.playBtn.selected == NO) {
+    [self startUpdateProgress];
+    [playManager playMusicWithFileName:@"张金多（女孩）.m4a" didComplete:^{
+        //播放完成后合成
+        [self audioAndAudio];
+        
+    }];
+}
+    
 
 ///合成
 - (void)audioAndAudio
 {
-    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语)" ofType:@"mp3"];
-    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"一东" ofType:@"mp3"];
+    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
+    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
 //    NSString *audioPath = [self.recordFileUrl absoluteString];
     AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
     AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
@@ -236,7 +247,7 @@
     self.lyricView.lyricProgress = progress;
     self.lyricView.alpha = 0.5;
 }
--(void)onClickBtnPlayingRecord{
+-(void)onClickbtnMP3RecordMixture{
     NSLog(@"播放录音");
     [self.recorder stop];
     [self.player stop];
@@ -273,13 +284,13 @@
     }return _lyricView;
 }
 
--(UIButton *)btnPlayingRecord{
-    if (!_btnPlayingRecord) {
-        _btnPlayingRecord = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnPlayingRecord.frame = CGRectMake( 100, 100, 100, 100);
-        _btnPlayingRecord.backgroundColor = [UIColor redColor];
-        [_btnPlayingRecord addTarget:self action:@selector(onClickBtnPlayingRecord) forControlEvents:UIControlEventTouchUpInside];
-    }return _btnPlayingRecord;
+-(UIButton *)btnMP3RecordMixture{
+    if (!_btnMP3RecordMixture) {
+        _btnMP3RecordMixture = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnMP3RecordMixture.frame = CGRectMake( 100, 100, 100, 100);
+        _btnMP3RecordMixture.backgroundColor = [UIColor redColor];
+        [_btnMP3RecordMixture addTarget:self action:@selector(onClickbtnMP3RecordMixture) forControlEvents:UIControlEventTouchUpInside];
+    }return _btnMP3RecordMixture;
 }
 - (NSString *)filePath
 {
