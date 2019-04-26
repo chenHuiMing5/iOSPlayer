@@ -49,6 +49,9 @@
         // 播放音乐
         NSURL *url = [[NSBundle mainBundle] URLForResource:fileName withExtension:nil];
         AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
+        player.volume = 1.0;
+
+       
         self.player = player;
         [player prepareToPlay];
         

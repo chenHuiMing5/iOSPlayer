@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import <AVFoundation/AVFoundation.h>
 @interface AppDelegate ()
 
 @end
@@ -20,6 +21,10 @@
     [self.window setBackgroundColor:[UIColor whiteColor]];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc]init]];
     [self.window setRootViewController:nav];
+    // 音频后台播放
+    NSError *error = nil;
+    [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetoothA2DP|AVAudioSessionCategoryOptionAllowAirPlay error:nil];
     [self.window makeKeyAndVisible];
     return YES;
 }

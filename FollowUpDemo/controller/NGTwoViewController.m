@@ -81,12 +81,18 @@
 ///合成
 - (void)audioAndAudio
 {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss:SSS"];
+    NSDate *datenow = [NSDate date];
+    NSString *nowtimeStr = [formatter stringFromDate:datenow];
+     NSLog(@"------------------------time 1 =  %@",nowtimeStr);
+ 
 //    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
 //    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
 //    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
 //    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
     
-        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
+        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
 //        NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
         AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
         AVURLAsset *audioAsset = [AVURLAsset assetWithURL:self.recordFileUrl];
@@ -95,7 +101,7 @@
     AVMutableComposition *compostion = [AVMutableComposition composition];
     AVMutableCompositionTrack *video = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
     [video insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
-    video.preferredVolume = 0.5;
+    video.preferredVolume = 0.2;
     AVMutableCompositionTrack *audio = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
     [audio insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
     audio.preferredVolume = 1.0;
@@ -117,6 +123,12 @@
     [session exportAsynchronouslyWithCompletionHandler:^{
         if ([[NSFileManager defaultManager] fileExistsAtPath:outPutFilePath])
         {
+        
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss:SSS"];
+             NSDate *datenow = [NSDate date];
+            NSString *nowtimeStr = [formatter stringFromDate:datenow];
+            NSLog(@"------------------------time 222222 =  %@",nowtimeStr);
             // 调用播放方法
             [self playAudio:[NSURL fileURLWithPath:outPutFilePath]];
         }
@@ -140,6 +152,8 @@
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     // 添加到imageview的layer上
     [self.view.layer addSublayer:playerLayer];
+    player.volume =1.0;
+
     // 隐藏提示框 开始播放
     // 播放
     [player play];
@@ -148,7 +162,9 @@
 -(void)startRecord{
     AVAudioSession *session =[AVAudioSession sharedInstance];
     NSError *sessionError;
-    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetoothA2DP|AVAudioSessionCategoryOptionAllowAirPlay error:nil];
+
     if (session == nil) {
         
         NSLog(@"Error creating session: %@",[sessionError description]);
@@ -171,13 +187,13 @@
     //设置参数
     NSDictionary *recordSetting = [[NSDictionary alloc] initWithObjectsAndKeys:
                                    //采样率  8000/11025/22050/44100/96000（影响音频的质量）
-                                   [NSNumber numberWithFloat: 8000.0],AVSampleRateKey,
+                                   [NSNumber numberWithFloat: 44100.0],AVSampleRateKey,
                                    // 音频格式
                                    [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,
                                    //采样位数  8、16、24、32 默认为16
-                                   [NSNumber numberWithInt:16],AVLinearPCMBitDepthKey,
+                                   [NSNumber numberWithInt:32],AVLinearPCMBitDepthKey,
                                    // 音频通道数 1 或 2
-                                   [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
+                                   [NSNumber numberWithInt: 2], AVNumberOfChannelsKey,
                                    //录音质量
                                    [NSNumber numberWithInt:AVAudioQualityHigh],AVEncoderAudioQualityKey,
                                    nil];
@@ -268,7 +284,9 @@
     
     NSLog(@"%li",self.player.data.length/1024);
     
-    [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//    [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetoothA2DP|AVAudioSessionCategoryOptionAllowAirPlay error:nil];
+
     [self.player play];
     
 }
