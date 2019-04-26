@@ -87,17 +87,18 @@
 //    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
     
         NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
-        NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
-        AVURLAsset *audioAsset = [AVURLAsset assetWithURL:self.recordFileUrl];
+//        NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
         AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
-    
+        AVURLAsset *audioAsset = [AVURLAsset assetWithURL:self.recordFileUrl];
+
     
     AVMutableComposition *compostion = [AVMutableComposition composition];
     AVMutableCompositionTrack *video = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
     [video insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration) ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
+    video.preferredVolume = 0.5;
     AVMutableCompositionTrack *audio = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
     [audio insertTimeRange:CMTimeRangeMake(kCMTimeZero, audioAsset.duration) ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio].firstObject atTime:kCMTimeZero error:nil];
-    
+    audio.preferredVolume = 1.0;
     /*
      批量插入音轨到文件最后
      CMTimeRange range = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
@@ -162,8 +163,8 @@
     
     //1.获取沙盒地址
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-   NSString *filePath = [path stringByAppendingString:@"/RRecordNew.wav"];
-    
+   NSString *filePath = [path stringByAppendingString:@"/RRecordNew.wav"]; //这里必须是wav格式，不然音频格式和文件存储格式不匹配
+
     //2.获取文件路径
     self.recordFileUrl = [NSURL fileURLWithPath:filePath];
     
