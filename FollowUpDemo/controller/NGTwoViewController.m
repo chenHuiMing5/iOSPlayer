@@ -19,10 +19,10 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface NGTwoViewController ()<WPFLyricViewDelegate>
-{
-    NSString *filePath;
-
-}
+//{
+//    NSString *filePath;
+//
+//}
 @property (nonatomic, strong) WPFLyricView *lyricView;
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,strong) NSArray *lyrics;
@@ -47,18 +47,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.currentLyricIndex = 0;
-    [self.view addSubview:self.lyricView];
-   
+  
     self.view.backgroundColor = [UIColor grayColor];
+    [self createUI];
+    [self startRecord];
+
     [self playAudioMp3];
-    
+
 
     // 强制布局
-//    [self startRecord];
     [self.view layoutIfNeeded];
 }
 -(void)createUI{
+    self.currentLyricIndex = 0;
+    [self.view addSubview:self.lyricView];
     [self.view addSubview:self.btnMP3RecordMixture];
 
 }
@@ -68,6 +70,7 @@
     //    if (self.playBtn.selected == NO) {
     [self startUpdateProgress];
     [playManager playMusicWithFileName:@"张金多（女孩）.m4a" didComplete:^{
+        [self.recorder stop];
         //播放完成后合成
         [self audioAndAudio];
         
@@ -78,11 +81,16 @@
 ///合成
 - (void)audioAndAudio
 {
-    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
-    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
-//    NSString *audioPath = [self.recordFileUrl absoluteString];
-    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
-    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
+//    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
+//    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
+//    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
+//    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
+    
+        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
+        NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
+        AVURLAsset *audioAsset = [AVURLAsset assetWithURL:self.recordFileUrl];
+        AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
+    
     
     AVMutableComposition *compostion = [AVMutableComposition composition];
     AVMutableCompositionTrack *video = [compostion addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:0];
@@ -139,7 +147,7 @@
 -(void)startRecord{
     AVAudioSession *session =[AVAudioSession sharedInstance];
     NSError *sessionError;
-    [session setCategory:AVAudioSessionCategoryAmbient error:&sessionError];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
     if (session == nil) {
         
         NSLog(@"Error creating session: %@",[sessionError description]);
@@ -153,8 +161,8 @@
     
     
     //1.获取沙盒地址
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    filePath = [path stringByAppendingString:@"/RRecord.mp3"];
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+   NSString *filePath = [path stringByAppendingString:@"/RRecordNew.wav"];
     
     //2.获取文件路径
     self.recordFileUrl = [NSURL fileURLWithPath:filePath];
@@ -182,10 +190,10 @@
         [_recorder prepareToRecord];
         [_recorder record];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            [self stopRecord];
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+//            [self stopRecord];
+//        });
         
         
         
@@ -249,6 +257,8 @@
 }
 -(void)onClickbtnMP3RecordMixture{
     NSLog(@"播放录音");
+    WPFPlayManager *pm = [WPFPlayManager sharedPlayManager];
+    [pm pause];
     [self.recorder stop];
     [self.player stop];
     if ([self.player isPlaying])return;
