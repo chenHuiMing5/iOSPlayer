@@ -41,6 +41,7 @@
 @property (nonatomic, strong) NSArray *arrFBTime;
 @property (nonatomic, strong) UILabel *labFBPoint;
 @property (nonatomic, strong) UILabel *labAllFB;
+@property (nonatomic, strong) NSMutableArray *marrFBNumAll;
 
 
 
@@ -65,6 +66,7 @@
 -(void)createUI{
     self.currentLyricIndex = 0;
     self.arrFBTime = @[@"5000.0",@"9000.0",@"12000.0"];
+    self.marrFBNumAll = [NSMutableArray array];
     [self.view addSubview:self.lyricView];
     [self.view addSubview:self.btnMP3RecordMixture];
     [self.view addSubview:self.labAllFB];
@@ -255,8 +257,23 @@
     int fbNum =  [self audioPowerChangeNUM];
     NSLog(@"分贝值：--------------——：%d",fbNum);
     self.labAllFB.text = [NSString stringWithFormat:@"实时分贝值：%d",fbNum];
-    //是否要加锁
-    for (NSString *timeStr in self.arrFBTime) {
+//    //是否要加锁
+//    for (NSString *timeStr in self.arrFBTime) {
+//        double secondTime = [timeStr doubleValue]/1000.0;
+//        double minSecondTimeS= ([timeStr doubleValue] -50) /1000.0;
+//        double maxSecondTime = ([timeStr doubleValue] + 50)/1000.0;
+//        NSLog(@"pm.currentTime -----:%.001f",pm.currentTime);
+//        NSLog(@"secondTime ------------------------------------%.001f",secondTime);
+//
+//        if (pm.currentTime == secondTime ||( pm.currentTime >minSecondTimeS && pm.currentTime < maxSecondTime)) {
+//            NSLog(@"打印当前这个分贝值：%d",fbNum);
+//            self.labFBPoint.text = [NSString stringWithFormat:@"在固定时间点：%@ 的分贝值：%d",timeStr,fbNum];
+//        }
+//    }
+    
+    
+    [self.arrFBTime enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString * timeStr = obj;
         double secondTime = [timeStr doubleValue]/1000.0;
         double minSecondTimeS= ([timeStr doubleValue] -50) /1000.0;
         double maxSecondTime = ([timeStr doubleValue] + 50)/1000.0;
@@ -265,9 +282,15 @@
         
         if (pm.currentTime == secondTime ||( pm.currentTime >minSecondTimeS && pm.currentTime < maxSecondTime)) {
             NSLog(@"打印当前这个分贝值：%d",fbNum);
-            self.labFBPoint.text = [NSString stringWithFormat:@"在固定时间点：%@ 的分贝值：%d",timeStr,fbNum];
+            UILabel *lab = [[UILabel alloc] init];
+            lab.frame = CGRectMake(100, idx *40 + 100  , self.view.frame.size.width - 100, 40);
+            lab.textColor = [UIColor redColor];
+            lab.text = [NSString stringWithFormat:@"在固定时间点：%@ 的分贝值：%d",timeStr,fbNum];
+            
+            [self.view addSubview:lab];
         }
-    }
+    }];
+   
 }
 
 - (void)updateLyric {
@@ -398,18 +421,10 @@
     return _filePath;
 }
 
--(UILabel *)labFBPoint{
-    if (!_labFBPoint) {
-        _labFBPoint = [[UILabel alloc] init];
-        _labFBPoint.frame = CGRectMake(100, 70 , self.view.frame.size.width - 100, 50);
-        _labFBPoint.textColor = [UIColor redColor];
-    
-    }return _labFBPoint;
-}
 -(UILabel *)labAllFB{
     if (!_labAllFB) {
         _labAllFB = [[UILabel alloc] init];
-        _labAllFB .frame = CGRectMake(100, 120, self.view.frame.size.width  - 100, 50);
+        _labAllFB .frame = CGRectMake(100, 70, self.view.frame.size.width  - 100, 50);
         _labAllFB.textColor = [UIColor redColor];
     }return _labAllFB;
 }
