@@ -41,6 +41,7 @@
 		8437B9B62270B97200B000F1 /* WPFMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9B52270B97100B000F1 /* WPFMusic.m */; };
 		8437B9B92270C25E00B000F1 /* WPFLyricParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9B72270C25E00B000F1 /* WPFLyricParser.m */; };
 		846CDDBA226FDF510008F622 /* AudioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CDDB9226FDF510008F622 /* AudioTableViewCell.m */; };
+		84832CCA22754435007607F0 /* 清明.lrc in Resources */ = {isa = PBXBuildFile; fileRef = 84832CC922754435007607F0 /* 清明.lrc */; };
 		84F8C064226FD65D00C25695 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C052226FD65D00C25695 /* MJPropertyType.m */; };
 		84F8C065226FD65D00C25695 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C055226FD65D00C25695 /* NSObject+MJKeyValue.m */; };
 		84F8C066226FD65D00C25695 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C056226FD65D00C25695 /* MJProperty.m */; };
@@ -138,6 +139,7 @@
 		8437B9B82270C25E00B000F1 /* WPFLyricParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFLyricParser.h; sourceTree = "<group>"; };
 		846CDDB8226FDF510008F622 /* AudioTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioTableViewCell.h; sourceTree = "<group>"; };
 		846CDDB9226FDF510008F622 /* AudioTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioTableViewCell.m; sourceTree = "<group>"; };
+		84832CC922754435007607F0 /* 清明.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "清明.lrc"; sourceTree = "<group>"; };
 		84F8C04F226FD65D00C25695 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
 		84F8C050226FD65D00C25695 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
 		84F8C051226FD65D00C25695 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				842D6C1C226F6E720074F115 /* 一东.mp3 */,
 				840D95AF2272AA7200F4A1AE /* 张金多（女孩）.m4a */,
 				840D95AD2272AA4C00F4A1AE /* 清明（刘琮）.mp3 */,
+				84832CC922754435007607F0 /* 清明.lrc */,
 			);
 			path = Resouces;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84832CCA22754435007607F0 /* 清明.lrc in Resources */,
 				842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */,
 				8437B9A02270739400B000F1 /* COPYING.txt in Resources */,
 				840D95B02272AA7200F4A1AE /* 张金多（女孩）.m4a in Resources */,

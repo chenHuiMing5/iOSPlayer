@@ -92,7 +92,7 @@
 //    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
 //    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
     
-        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
+        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语)" ofType:@"mp3"];
 //        NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
         AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
         AVURLAsset *audioAsset = [AVURLAsset assetWithURL:self.recordFileUrl];
@@ -284,7 +284,6 @@
     
     NSLog(@"%li",self.player.data.length/1024);
     
-//    [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionDefaultToSpeaker|AVAudioSessionCategoryOptionAllowBluetoothA2DP|AVAudioSessionCategoryOptionAllowAirPlay error:nil];
 
     [self.player play];
@@ -297,7 +296,10 @@
 
 -(NSArray *)lyrics{
     if (!_lyrics) {
-        self.lyrics = [WPFLyricParser parserLyricWithFileName:@"陈奕迅 - 陪你度过漫长岁月 (国语).lrc"];
+        //清明
+//        self.lyrics = [WPFLyricParser parserLyricWithFileName:@"陈奕迅 - 陪你度过漫长岁月 (国语).lrc"];
+        self.lyrics = [WPFLyricParser parserLyricWithFileName:@"清明.lrc"];
+
     }return _lyrics;
 }
 

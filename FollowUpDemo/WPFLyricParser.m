@@ -24,7 +24,7 @@
     NSArray *lineStrs = [lyricStr componentsSeparatedByString:@"\n"];
     
     // 设置歌词时间正则表达式格式
-    NSString *pattern = @"\\[[0-9]{2}:[0-9]{2}.[0-9]{2}\\]";
+    NSString *pattern = @"\\[[0-9]{2}:[0-9]{2}.[0-9]{3}\\]";
     NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:NULL];
     
     // 创建可变数组存放歌词模型
@@ -35,30 +35,34 @@
         
         NSArray *results = [reg matchesInString:lineStr options:0 range:NSMakeRange(0, lineStr.length)];
         
-        // 歌词内容
-        NSTextCheckingResult *lastResult = [results lastObject];
-        NSString *content = [lineStr substringFromIndex:lastResult.range.location + lastResult.range.length];
-        
-        // 每一个结果的range
-        for (NSTextCheckingResult *result in results) {
+        if (results.count>0) {
+            // 歌词内容
+            NSTextCheckingResult *lastResult = [results lastObject];
+            NSString *content = [lineStr substringFromIndex:lastResult.range.location + lastResult.range.length];
             
-            NSString *time = [lineStr substringWithRange:result.range];
+            // 每一个结果的range
+            for (NSTextCheckingResult *result in results) {
+                
+                NSString *time = [lineStr substringWithRange:result.range];
+                
+#warning 对于 NSDateFormatter 类似的重大开小对象，最好使用单例管理
+                NSDateFormatter *formatter = [NSDateFormatter sharedDateFormatter];
+                formatter.dateFormat = @"[mm:ss.SS]";
+                NSDate *timeDate = [formatter dateFromString:time];
+                NSDate *initDate = [formatter dateFromString:@"[00:00.00]"];
+                
+                // 创建模型
+                WPFLyric *lyric = [[WPFLyric alloc] init];
+                lyric.content = content;
+                // 歌词的开始时间
+                lyric.time = [timeDate timeIntervalSinceDate:initDate];
+                
+                // 将歌词对象添加到模型数组汇总
+                [lyrics addObject:lyric];
+            }
 
-            #warning 对于 NSDateFormatter 类似的重大开小对象，最好使用单例管理
-            NSDateFormatter *formatter = [NSDateFormatter sharedDateFormatter];
-            formatter.dateFormat = @"[mm:ss.SS]";
-            NSDate *timeDate = [formatter dateFromString:time];
-            NSDate *initDate = [formatter dateFromString:@"[00:00.00]"];
-            
-            // 创建模型
-            WPFLyric *lyric = [[WPFLyric alloc] init];
-            lyric.content = content;
-            // 歌词的开始时间
-            lyric.time = [timeDate timeIntervalSinceDate:initDate];
-            
-            // 将歌词对象添加到模型数组汇总
-            [lyrics addObject:lyric];
         }
+        
     }
     
     // 按照时间正序排序
