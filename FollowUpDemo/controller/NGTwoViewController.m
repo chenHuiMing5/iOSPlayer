@@ -37,6 +37,10 @@
 @property (nonatomic, strong) UIButton *btnMP3RecordMixture;
 
 @property (nonatomic,strong) NSString *filePath;
+///节奏数组
+@property (nonatomic, strong) NSArray *arrFBTime;
+@property (nonatomic, strong) UILabel *labFBPoint;
+@property (nonatomic, strong) UILabel *labAllFB;
 
 
 
@@ -60,9 +64,11 @@
 }
 -(void)createUI{
     self.currentLyricIndex = 0;
+    self.arrFBTime = @[@"5000.0",@"9000.0",@"12000.0"];
     [self.view addSubview:self.lyricView];
     [self.view addSubview:self.btnMP3RecordMixture];
-
+    [self.view addSubview:self.labAllFB];
+    [self.view addSubview:self.labFBPoint];
 }
 ///播放
 -(void)playAudioMp3{
@@ -71,6 +77,7 @@
     [self startUpdateProgress];
     [playManager playMusicWithFileName:@"张金多（女孩）.m4a" didComplete:^{
         [self.recorder stop];
+        [self.timer invalidate];
         //播放完成后合成
         [self audioAndAudio];
         
@@ -87,12 +94,12 @@
     NSString *nowtimeStr = [formatter stringFromDate:datenow];
      NSLog(@"------------------------time 1 =  %@",nowtimeStr);
  
-//    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
+    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
 //    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
 //    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
 //    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
     
-        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语)" ofType:@"mp3"];
+//        NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"陈奕迅 - 陪你度过漫长岁月 (国语)" ofType:@"mp3"];
 //        NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
         AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
         AVURLAsset *audioAsset = [AVURLAsset assetWithURL:self.recordFileUrl];
@@ -191,9 +198,9 @@
                                    // 音频格式
                                    [NSNumber numberWithInt: kAudioFormatLinearPCM],AVFormatIDKey,
                                    //采样位数  8、16、24、32 默认为16
-                                   [NSNumber numberWithInt:32],AVLinearPCMBitDepthKey,
+                                   [NSNumber numberWithInt:16],AVLinearPCMBitDepthKey,
                                    // 音频通道数 1 或 2
-                                   [NSNumber numberWithInt: 2], AVNumberOfChannelsKey,
+                                   [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
                                    //录音质量
                                    [NSNumber numberWithInt:AVAudioQualityHigh],AVEncoderAudioQualityKey,
                                    nil];
@@ -241,10 +248,26 @@
 
 - (void)updateProgress {
     WPFPlayManager *pm = [WPFPlayManager sharedPlayManager];
-    
-    
     //  更新歌词
     [self updateLyric];
+    
+    //检测分贝值
+    int fbNum =  [self audioPowerChangeNUM];
+    NSLog(@"分贝值：--------------——：%d",fbNum);
+    self.labAllFB.text = [NSString stringWithFormat:@"实时分贝值：%d",fbNum];
+    //是否要加锁
+    for (NSString *timeStr in self.arrFBTime) {
+        double secondTime = [timeStr doubleValue]/1000.0;
+        double minSecondTimeS= ([timeStr doubleValue] -50) /1000.0;
+        double maxSecondTime = ([timeStr doubleValue] + 50)/1000.0;
+        NSLog(@"pm.currentTime -----:%.001f",pm.currentTime);
+        NSLog(@"secondTime ------------------------------------%.001f",secondTime);
+        
+        if (pm.currentTime == secondTime ||( pm.currentTime >minSecondTimeS && pm.currentTime < maxSecondTime)) {
+            NSLog(@"打印当前这个分贝值：%d",fbNum);
+            self.labFBPoint.text = [NSString stringWithFormat:@"在固定时间点：%@ 的分贝值：%d",timeStr,fbNum];
+        }
+    }
 }
 
 - (void)updateLyric {
@@ -289,6 +312,42 @@
     [self.player play];
     
 }
+
+
+/**
+ *  录音声波状态设置 返回分贝值
+ */
+-(int)audioPowerChangeNUM{
+    
+    [_recorder updateMeters];//更新测量值
+    float power = [_recorder averagePowerForChannel:0];
+    float powerMax = [_recorder peakPowerForChannel:0];
+//    NSLog(@"-------------power = %f, powerMax = %f",power, powerMax);
+    
+    CGFloat progress = (1.0 / 160.0) * (power + 160.0);
+    
+    power = power + 160  - 50;
+    
+    int dB = 0;
+    if (power < 0.f) {
+        dB = 0;
+    } else if (power < 40.f) {
+        dB = (int)(power * 0.875);
+    } else if (power < 100.f) {
+        dB = (int)(power - 15);
+    } else if (power < 110.f) {
+        dB = (int)(power * 2.5 - 165);
+    } else {
+        dB = 110;
+    }
+    
+ 
+    return dB;
+    
+    
+}
+
+
 #pragma mark 代理
 - (void)lyricView:(WPFLyricView *)lyricView withProgress:(CGFloat)progress {
     
@@ -318,7 +377,7 @@
 -(UIButton *)btnMP3RecordMixture{
     if (!_btnMP3RecordMixture) {
         _btnMP3RecordMixture = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnMP3RecordMixture.frame = CGRectMake( 100, 100, 100, 100);
+        _btnMP3RecordMixture.frame = CGRectMake( 0, 64, 100, 100);
         _btnMP3RecordMixture.backgroundColor = [UIColor redColor];
         [_btnMP3RecordMixture addTarget:self action:@selector(onClickbtnMP3RecordMixture) forControlEvents:UIControlEventTouchUpInside];
     }return _btnMP3RecordMixture;
@@ -339,6 +398,22 @@
     return _filePath;
 }
 
+-(UILabel *)labFBPoint{
+    if (!_labFBPoint) {
+        _labFBPoint = [[UILabel alloc] init];
+        _labFBPoint.frame = CGRectMake(100, 70 , self.view.frame.size.width - 100, 50);
+        _labFBPoint.textColor = [UIColor redColor];
+    
+    }return _labFBPoint;
+}
+-(UILabel *)labAllFB{
+    if (!_labAllFB) {
+        _labAllFB = [[UILabel alloc] init];
+        _labAllFB .frame = CGRectMake(100, 120, self.view.frame.size.width  - 100, 50);
+        _labAllFB.textColor = [UIColor redColor];
+    }return _labAllFB;
+}
+    
 /*
 #pragma mark - Navigation
 
