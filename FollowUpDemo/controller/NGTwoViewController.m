@@ -77,7 +77,7 @@
     WPFPlayManager *playManager = [WPFPlayManager sharedPlayManager];
     //    if (self.playBtn.selected == NO) {
     [self startUpdateProgress];
-    [playManager playMusicWithFileName:@"张金多（女孩）.m4a" didComplete:^{
+    [playManager playMusicWithFileName:@"清明（刘琮）.mp3" didComplete:^{
         [self.recorder stop];
         [self.timer invalidate];
         //播放完成后合成
@@ -96,8 +96,8 @@
     NSString *nowtimeStr = [formatter stringFromDate:datenow];
      NSLog(@"------------------------time 1 =  %@",nowtimeStr);
  
-    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
-//    NSString *audioPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
+//    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"张金多（女孩）" ofType:@"m4a"];
+    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"清明（刘琮）" ofType:@"mp3"];
 //    AVURLAsset *audioAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:audioPath]];
 //    AVURLAsset *videoAsset = [AVURLAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
     

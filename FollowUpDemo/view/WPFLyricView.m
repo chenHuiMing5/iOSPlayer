@@ -161,6 +161,7 @@
     NGColorLabel *colorLabel = self.vScrollerView.subviews[currentLyricIndex];
     colorLabel.font = [UIFont systemFontOfSize:20];
     
+    colorLabel.currentColor = [UIColor redColor];
 //    if (self.vScrollerView.hidden == NO) {
 //        return;
 //    }
