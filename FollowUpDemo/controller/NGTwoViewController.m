@@ -81,7 +81,7 @@
         [self.recorder stop];
         [self.timer invalidate];
         //播放完成后合成
-        [self audioAndAudio];
+//        [self audioAndAudio];
         
     }];
 }
