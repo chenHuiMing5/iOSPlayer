@@ -62,6 +62,9 @@
     [self.player play];
 }
 
+-(void)playGoOn{
+    [self.player play];
+}
 - (void)pause {
     [self.player pause];
 }

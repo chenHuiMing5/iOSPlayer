@@ -44,6 +44,9 @@
 @property (nonatomic, strong) NSMutableArray *marrFBNumAll;
 
 
+@property (nonatomic, strong) UIButton *btnRecordPause;
+@property (nonatomic, strong) UIButton *btnGoOn;
+
 
 
 @end
@@ -71,6 +74,23 @@
     [self.view addSubview:self.btnMP3RecordMixture];
     [self.view addSubview:self.labAllFB];
     [self.view addSubview:self.labFBPoint];
+    [self.view addSubview:self.btnRecordPause];
+    [self.view addSubview:self.btnGoOn];
+    [self.btnMP3RecordMixture mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).offset(10);
+        make.bottom.mas_equalTo(self.view).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(150, 40));
+    }];
+    [self.btnRecordPause mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.btnMP3RecordMixture.mas_right).offset(20);
+        make.centerY.mas_equalTo(self.btnMP3RecordMixture);
+        make.size.mas_equalTo(CGSizeMake(100, 40));
+    }];
+    [self.btnGoOn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.btnRecordPause.mas_right).offset(20);
+        make.centerY.mas_equalTo(self.btnMP3RecordMixture);
+        make.size.mas_equalTo(CGSizeMake(100, 40));
+    }];
 }
 ///播放
 -(void)playAudioMp3{
@@ -283,7 +303,7 @@
         if (pm.currentTime == secondTime ||( pm.currentTime >minSecondTimeS && pm.currentTime < maxSecondTime)) {
             NSLog(@"打印当前这个分贝值：%d",fbNum);
             UILabel *lab = [[UILabel alloc] init];
-            lab.frame = CGRectMake(100, idx *40 + 100  , self.view.frame.size.width - 100, 40);
+            lab.frame = CGRectMake(60, idx *40 + 100  , self.view.frame.size.width - 100, 40);
             lab.textColor = [UIColor redColor];
             lab.text = [NSString stringWithFormat:@"在固定时间点：%@ 的分贝值：%d",timeStr,fbNum];
             
@@ -336,6 +356,28 @@
     
 }
 
+-(void)onClickbtnRecordPause{
+
+    if(![self.recorder isRecording]){
+        return;
+    }
+    
+    [self.recorder pause];
+    [self.player stop];
+    WPFPlayManager *pm = [WPFPlayManager sharedPlayManager];
+    [pm pause];
+}
+
+-(void)onClickbtnRecordGoOn{
+  
+    if (self.recorder !=nil && !self.recorder.isRecording) {
+        [self.recorder record];
+    }
+    WPFPlayManager *pm = [WPFPlayManager sharedPlayManager];
+    [pm playGoOn];
+    
+    
+}
 
 /**
  *  录音声波状态设置 返回分贝值
@@ -345,7 +387,7 @@
     [_recorder updateMeters];//更新测量值
     float power = [_recorder averagePowerForChannel:0];
     float powerMax = [_recorder peakPowerForChannel:0];
-//    NSLog(@"-------------power = %f, powerMax = %f",power, powerMax);
+    NSLog(@"-------------power = %f, powerMax = %f",power, powerMax);
     
     CGFloat progress = (1.0 / 160.0) * (power + 160.0);
     
@@ -400,8 +442,12 @@
 -(UIButton *)btnMP3RecordMixture{
     if (!_btnMP3RecordMixture) {
         _btnMP3RecordMixture = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnMP3RecordMixture.frame = CGRectMake( 0, 64, 100, 100);
+        _btnMP3RecordMixture.frame = CGRectMake( 0, 64, 100, 20);
         _btnMP3RecordMixture.backgroundColor = [UIColor redColor];
+        _btnMP3RecordMixture.layer.masksToBounds = YES;
+        _btnMP3RecordMixture.layer.cornerRadius = 20;
+        [_btnMP3RecordMixture setTitle:@"播放合成声音" forState:UIControlStateNormal];
+        [_btnMP3RecordMixture setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_btnMP3RecordMixture addTarget:self action:@selector(onClickbtnMP3RecordMixture) forControlEvents:UIControlEventTouchUpInside];
     }return _btnMP3RecordMixture;
 }
@@ -428,7 +474,32 @@
         _labAllFB.textColor = [UIColor redColor];
     }return _labAllFB;
 }
-    
+
+-(UIButton *)btnRecordPause{
+    if (!_btnRecordPause) {
+        _btnRecordPause = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnRecordPause.frame = CGRectMake( 0, 64, 100, 40);
+        _btnRecordPause.backgroundColor = [UIColor redColor];
+        _btnRecordPause.layer.masksToBounds = YES;
+        _btnRecordPause.layer.cornerRadius = 20;
+        [_btnRecordPause setTitle:@"暂停" forState:UIControlStateNormal];
+        [_btnRecordPause setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnRecordPause addTarget:self action:@selector(onClickbtnRecordPause) forControlEvents:UIControlEventTouchUpInside];
+    }return _btnRecordPause;
+}
+-(UIButton *)btnGoOn{
+    if (!_btnGoOn) {
+        _btnGoOn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnGoOn.frame = CGRectMake( 0, 64, 100, 40);
+        _btnGoOn.backgroundColor = [UIColor redColor];
+        _btnGoOn.layer.masksToBounds = YES;
+        _btnGoOn.layer.cornerRadius = 20;
+        [_btnGoOn setTitle:@"继续" forState:UIControlStateNormal];
+        [_btnGoOn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnGoOn addTarget:self action:@selector(onClickbtnRecordGoOn) forControlEvents:UIControlEventTouchUpInside];
+    }return _btnGoOn;
+}
+
 /*
 #pragma mark - Navigation
 

@@ -23,6 +23,7 @@
  */
 - (void)playMusicWithFileName:(NSString *)fileName didComplete:(void(^)())complete;
 
+-(void)playGoOn;
 /** 音乐暂停 */
 - (void)pause;
 
