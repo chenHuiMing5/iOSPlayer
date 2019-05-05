@@ -97,7 +97,7 @@
     WPFPlayManager *playManager = [WPFPlayManager sharedPlayManager];
     //    if (self.playBtn.selected == NO) {
     [self startUpdateProgress];
-    [playManager playMusicWithFileName:@"清明（刘琮）.mp3" didComplete:^{
+    [playManager playMusicWithFileName:@"cut(1).mp3" didComplete:^{
         [self.recorder stop];
         [self.timer invalidate];
         //播放完成后合成
