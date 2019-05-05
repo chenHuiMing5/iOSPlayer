@@ -18,7 +18,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface NGTwoViewController ()<WPFLyricViewDelegate>
+@interface NGTwoViewController ()<WPFLyricViewDelegate,AVAudioPlayerDelegate>
 //{
 //    NSString *filePath;
 //
@@ -46,6 +46,9 @@
 
 @property (nonatomic, strong) UIButton *btnRecordPause;
 @property (nonatomic, strong) UIButton *btnGoOn;
+
+//原声里孩童声音
+@property (nonatomic,strong) AVAudioPlayer *playerB;
 
 
 
@@ -78,31 +81,40 @@
     [self.view addSubview:self.btnGoOn];
     [self.btnMP3RecordMixture mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(10);
-        make.bottom.mas_equalTo(self.view).offset(-20);
+        make.bottom.mas_equalTo(self.view).offset(-70);
         make.size.mas_equalTo(CGSizeMake(150, 40));
     }];
     [self.btnRecordPause mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.btnMP3RecordMixture.mas_right).offset(20);
-        make.centerY.mas_equalTo(self.btnMP3RecordMixture);
+        make.left.mas_equalTo(self.view).offset(10);
+        make.bottom.mas_equalTo(self.view).offset(-20);
         make.size.mas_equalTo(CGSizeMake(100, 40));
     }];
     [self.btnGoOn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.btnRecordPause.mas_right).offset(20);
-        make.centerY.mas_equalTo(self.btnMP3RecordMixture);
+        make.centerY.mas_equalTo(self.btnRecordPause);
         make.size.mas_equalTo(CGSizeMake(100, 40));
     }];
 }
 ///播放
 -(void)playAudioMp3{
+   
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"cut(2).mp3" withExtension:nil];
+     self.playerB  = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
+    _playerB.volume = 0.0;
+    [_playerB prepareToPlay];
+    _playerB.delegate = self;
+    [_playerB play];
+
+    
     WPFPlayManager *playManager = [WPFPlayManager sharedPlayManager];
-    //    if (self.playBtn.selected == NO) {
     [self startUpdateProgress];
     [playManager playMusicWithFileName:@"cut(1).mp3" didComplete:^{
+        
         [self.recorder stop];
         [self.timer invalidate];
         //播放完成后合成
 //        [self audioAndAudio];
-        
+        [self stopUpdateProgress];
     }];
 }
     
@@ -379,6 +391,13 @@
     
 }
 
+-(void)yuansheng{
+    _playerB.volume = 1.0;
+}
+-(void)notYuanSheng{
+    _playerB.volume = 0.0;
+}
+
 /**
  *  录音声波状态设置 返回分贝值
  */
@@ -482,9 +501,12 @@
         _btnRecordPause.backgroundColor = [UIColor redColor];
         _btnRecordPause.layer.masksToBounds = YES;
         _btnRecordPause.layer.cornerRadius = 20;
-        [_btnRecordPause setTitle:@"暂停" forState:UIControlStateNormal];
+//        [_btnRecordPause setTitle:@"暂停" forState:UIControlStateNormal];
+        [_btnRecordPause setTitle:@"原声" forState:UIControlStateNormal];
         [_btnRecordPause setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_btnRecordPause addTarget:self action:@selector(onClickbtnRecordPause) forControlEvents:UIControlEventTouchUpInside];
+//        [_btnRecordPause addTarget:self action:@selector(onClickbtnRecordPause) forControlEvents:UIControlEventTouchUpInside];
+                [_btnRecordPause addTarget:self action:@selector(yuansheng) forControlEvents:UIControlEventTouchUpInside];
+
     }return _btnRecordPause;
 }
 -(UIButton *)btnGoOn{
@@ -494,9 +516,13 @@
         _btnGoOn.backgroundColor = [UIColor redColor];
         _btnGoOn.layer.masksToBounds = YES;
         _btnGoOn.layer.cornerRadius = 20;
-        [_btnGoOn setTitle:@"继续" forState:UIControlStateNormal];
+//        [_btnGoOn setTitle:@"继续" forState:UIControlStateNormal];
+        [_btnGoOn setTitle:@"取消原声" forState:UIControlStateNormal];
+
         [_btnGoOn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_btnGoOn addTarget:self action:@selector(onClickbtnRecordGoOn) forControlEvents:UIControlEventTouchUpInside];
+//        [_btnGoOn addTarget:self action:@selector(onClickbtnRecordGoOn) forControlEvents:UIControlEventTouchUpInside];
+        [_btnGoOn addTarget:self action:@selector(notYuanSheng) forControlEvents:UIControlEventTouchUpInside];
+
     }return _btnGoOn;
 }
 

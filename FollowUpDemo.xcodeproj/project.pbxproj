@@ -32,7 +32,6 @@
 		8437B9762270487700B000F1 /* NSDateFormatter+shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9742270487700B000F1 /* NSDateFormatter+shared.m */; };
 		8437B979227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc in Resources */ = {isa = PBXBuildFile; fileRef = 8437B977227051F000B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).lrc */; };
 		8437B97A227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8437B978227051F100B000F1 /* 陈奕迅 - 陪你度过漫长岁月 (国语).mp3 */; };
-		8437B9A02270739400B000F1 /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8437B99C2270738F00B000F1 /* COPYING.txt */; };
 		8437B9A722708E5300B000F1 /* WPFLyricView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9A522708E5200B000F1 /* WPFLyricView.m */; };
 		8437B9AA227090C100B000F1 /* WPFSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9A8227090C100B000F1 /* WPFSliderView.m */; };
 		8437B9AD227090EB00B000F1 /* WPFLyric.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437B9AB227090EA00B000F1 /* WPFLyric.m */; };
@@ -43,6 +42,7 @@
 		846CDDBA226FDF510008F622 /* AudioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CDDB9226FDF510008F622 /* AudioTableViewCell.m */; };
 		84832CCA22754435007607F0 /* 清明.lrc in Resources */ = {isa = PBXBuildFile; fileRef = 84832CC922754435007607F0 /* 清明.lrc */; };
 		84EAFF97227EC7C000DBF4D5 /* cut(1).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFF96227EC7C000DBF4D5 /* cut(1).mp3 */; };
+		84EAFF99227EDEC400DBF4D5 /* cut(2).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84EAFF98227EDEC400DBF4D5 /* cut(2).mp3 */; };
 		84F8C064226FD65D00C25695 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C052226FD65D00C25695 /* MJPropertyType.m */; };
 		84F8C065226FD65D00C25695 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C055226FD65D00C25695 /* NSObject+MJKeyValue.m */; };
 		84F8C066226FD65D00C25695 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F8C056226FD65D00C25695 /* MJProperty.m */; };
@@ -142,6 +142,7 @@
 		846CDDB9226FDF510008F622 /* AudioTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioTableViewCell.m; sourceTree = "<group>"; };
 		84832CC922754435007607F0 /* 清明.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "清明.lrc"; sourceTree = "<group>"; };
 		84EAFF96227EC7C000DBF4D5 /* cut(1).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cut(1).mp3"; sourceTree = "<group>"; };
+		84EAFF98227EDEC400DBF4D5 /* cut(2).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "cut(2).mp3"; sourceTree = "<group>"; };
 		84F8C04F226FD65D00C25695 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
 		84F8C050226FD65D00C25695 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
 		84F8C051226FD65D00C25695 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
@@ -330,6 +331,7 @@
 				842D6C1A226F6E720074F115 /* 一东.plist */,
 				84EAFF96227EC7C000DBF4D5 /* cut(1).mp3 */,
 				842D6C1B226F6E720074F115 /* Background.caf */,
+				84EAFF98227EDEC400DBF4D5 /* cut(2).mp3 */,
 				842D6C1C226F6E720074F115 /* 一东.mp3 */,
 				840D95AF2272AA7200F4A1AE /* 张金多（女孩）.m4a */,
 				840D95AD2272AA4C00F4A1AE /* 清明（刘琮）.mp3 */,
@@ -479,8 +481,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84832CCA22754435007607F0 /* 清明.lrc in Resources */,
+				84EAFF99227EDEC400DBF4D5 /* cut(2).mp3 in Resources */,
 				842D6C1F226F6E720074F115 /* 一东.mp3 in Resources */,
-				8437B9A02270739400B000F1 /* COPYING.txt in Resources */,
 				840D95B02272AA7200F4A1AE /* 张金多（女孩）.m4a in Resources */,
 				840D95AE2272AA4C00F4A1AE /* 清明（刘琮）.mp3 in Resources */,
 				842D6C1D226F6E720074F115 /* 一东.plist in Resources */,

@@ -28,6 +28,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:nil];
     }
     return self;
