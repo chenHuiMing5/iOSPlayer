@@ -38,8 +38,9 @@
         if (results.count>0) {
             // 歌词内容
             NSTextCheckingResult *lastResult = [results lastObject];
+          
             NSString *content = [lineStr substringFromIndex:lastResult.range.location + lastResult.range.length];
-            
+         
             // 每一个结果的range
             for (NSTextCheckingResult *result in results) {
                 
@@ -51,6 +52,12 @@
                 NSDate *timeDate = [formatter dateFromString:time];
                 NSDate *initDate = [formatter dateFromString:@"[00:00.00]"];
                 
+                BOOL isRead = NO;
+                if ([content containsString:@"[r]"]) {
+                    NSArray *arr = [content componentsSeparatedByString:@"[r]"];
+                    content = arr[1];
+                    isRead = YES;
+                }
                 // 创建模型
                 WPFLyric *lyric = [[WPFLyric alloc] init];
                 lyric.content = content;
